@@ -8,7 +8,7 @@ public class Main {
         Random random = new Random();
         float average = 0, max;
         int people, i, j, numOfCashBox;
-        int lineNumber, globalLine = 0, mGlobalLine = 0;
+        int lineNumber, globalLine, mGlobalLine = 0;
 
         for (numOfCashBox = 1; numOfCashBox < 6; numOfCashBox++) {
             try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("cashbox" + numOfCashBox +".txt"))) {
@@ -30,10 +30,6 @@ public class Main {
             try (Scanner scanner = new Scanner(new File("cashbox" + numOfCashBox + ".txt"))) {
                 max = 0;
                 lineNumber = 0;
-                if(mGlobalLine < globalLine)
-                {
-                    mGlobalLine = globalLine;
-                }
                 globalLine = 0;
                 while (scanner.hasNext()) {
                     average = Float.parseFloat(scanner.next());
@@ -42,6 +38,10 @@ public class Main {
                         globalLine = lineNumber;
                     }
                     lineNumber++;
+                }
+                if(mGlobalLine < globalLine)
+                {
+                    mGlobalLine = globalLine;
                 }
 
                 if(globalLine % 2 == 0){
